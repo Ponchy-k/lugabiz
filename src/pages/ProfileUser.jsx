@@ -1,10 +1,12 @@
-import React, { useState } from "react";
-import Card from "../components/Card";
-import Navigation from "../components/Navigation";
-import Heart from "../components/Heart";
-import Ilocation from "../Icons/Ilocation";
-import Icalendar from "../Icons/Icalendar";
-import '../styles/UserStyles.css';
+import React, { useState } from "react"
+import Card from "../components/Card"
+import Navigation from "../components/Navigation"
+import Ilocation from "../Icons/Ilocation"
+import Icalendar from "../Icons/Icalendar"
+import Iheart from "../Icons/Iheart"
+import IcloseX from "../Icons/IcloseX"
+
+import "../styles/UserStyles.css"
 
 function ProfileUser() {
     const [isFormVisible, setFormVisible] = useState(false);
@@ -50,45 +52,49 @@ function ProfileUser() {
             className="container d-flex justify-content-center  h-auto"
         >
             <div className="d-flex justify-content-center flex-column" style={{ width: "80%" }}>
-                <header className="text-center mt-5">
-                    <img
-                        src="https://avatars.githubusercontent.com/u/1561955?v=4"
-                        alt="usuario"
-                        width="100"
-                        height="100"
-                        className="rounded-pill object-fit-cover imageUser z-2"
-                    />
-                    <div className="text-center" />
-                    <h4 className="mt-3">Midudev</h4>
-                    <div className="d-flex justify-content-evenly gap-3">
-                        <span className="d-flex flex-column align-items-center px-3 py-2">
-                            <Heart />
-                            <small>4.9 me gusta</small>
-                        </span>
-                        <span className="d-flex flex-column align-items-center px-3 py-2">
-                            <Ilocation />
-                            <small>Madrid, España</small>
-                        </span>
-                        <span className="d-flex flex-column align-items-center px-3 py-2">
-                            <Icalendar />
-                            <small>Se unió en 2024</small>
-                        </span>
+                <header className="text-center mt-5 d-flex justify-content-center">
+                    <div className="d-flex align-items-center mx-4">
+                        <img
+                            src="https://avatars.githubusercontent.com/u/1561955?v=4"
+                            alt="usuario"
+                            width="100"
+                            height="100"
+                            className="rounded-pill object-fit-cover imageUser z-2"
+                        />
                     </div>
-                    <p className="mt-4 text-pretty">
-                        ¡Hola! Soy Midu, un viajero apasionado y buscador de
-                        experiencias. Me encanta explorar nuevas culturas, probar
-                        cocinas exóticas y superar mis límites con aventuras
-                        emocionantes.
-                    </p>
-                </header>
+                    <div className="d-flex flex-column">
+                        <h4 className="mt-3 text-start mx-2 text-capitalize">
+                            Miguel Durán
+                        </h4>
+                        <div className="d-flex justify-content-evenly gap-3 my-2">
+                            <span className="d-flex flex-column align-items-center px-3 py-2">
+                                <Iheart />
+                                <small>4.9 me gusta</small>
+                            </span>
+                            <span className="d-flex flex-column align-items-center px-3 py-2">
+                                <Ilocation />
+                                <small>Madrid, España</small>
+                            </span>
+                            <span className="d-flex flex-column align-items-center px-3 py-2">
+                                <Icalendar />
+                                <small>Se unió en 2024</small>
+                            </span>
+                        </div>
+                        <div className="d-flex flex-column">
+                            <div className="d-flex justify-content-center gap-3">
+                                <button className="py-2 px-4 rounded-3 border border-0 bg-tomato text-white">Seguir</button>
+                                <button className="py-2 px-4 rounded-3 border ">Me gusta</button>
+                            </div>
 
-                <div className="bg-body-secondary">
-                    <Navigation
-                        classStyleContainer={"justify-content-center p-5 custom-background"}
-                        classStyle={"bg-tomato text-white rounded-pill"}
-                        items={["Publicaciones", "Lugares favoritos", "Logros", "Reseñas"]}
-                    />
-                </div>
+                        </div>
+                    </div>
+                </header>
+                <hr />
+                <Navigation
+                    classStyleContainer={"justify-content-center custom-background"}
+                    classStyle={"bg-tomato text-white rounded-pill"}
+                    items={["Publicaciones", "Lugares favoritos", "Logros", "Reseñas"]}
+                />
                 <div className="d-flex flex-wrap justify-content-center gap-4 py-4">
                     {/* Mostrar las tarjetas creadas */}
                     {cards.map((card, index) => (
@@ -104,8 +110,11 @@ function ProfileUser() {
                 </div>
 
                 {isFormVisible && (
-                    <div className="modal">
-                        <form onSubmit={handleSubmit} className="form">
+                    <section className="modal">
+                        <form onSubmit={handleSubmit} className="form p-2">
+                            <header className="d-flex justify-content-end">
+                                <IcloseX onClick={() => setFormVisible(false)} />
+                            </header>
                             <h2>Crear Publicación</h2>
                             <div>
                                 <label htmlFor="placeName">Nombre del Lugar:</label>
@@ -235,10 +244,12 @@ function ProfileUser() {
                                     onChange={(e) => setImage(e.target.files[0])}
                                 />
                             </div>
-                            <button type="submit">Enviar</button>
-                            <button type="button" onClick={() => setFormVisible(false)}>Cancelar</button>
+                            <div className="d-flex justify-content-center">
+                                <button type="submit"
+                                    className="bg-tomato text-white px-5 py-2 border border-0 rounded-3">Enviar</button>
+                            </div>
                         </form>
-                    </div>
+                    </section>
                 )}
 
             </div>

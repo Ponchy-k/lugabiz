@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom"
 import Heart from "../components/Heart.jsx"; // Asegúrate de que la ruta sea correcta
+import Heart from "../components/Heart.jsx"; 
 
 function Card({ title, body, href }) {
     const [likes, setLikes] = useState();
@@ -31,9 +32,8 @@ function Card({ title, body, href }) {
                 <p className="card-text">{body}</p>
             </div>
             <div className="p-2">
-                <Heart />
                 <Heart/>
-                <span>{parseInt(likes) > 1 ? `Les gusta a ${likes} personas` : `Le gusta a ${likes} persona`}</span>
+                <span>{likes}</span>
             </div>
         </article>
     );
